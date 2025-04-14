@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       currentIndex: 0,
+      timer: null,
       topProducts: [],
     };
   },
@@ -51,13 +52,16 @@ export default {
   },
 
   mounted() {
-    setInterval(() => {
+    this.timer = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.topProducts.length;
       this.$refs.productList.scrollTo({
         left: this.currentIndex * this.$refs.productList.clientWidth,
         behavior: "smooth",
       });
     }, 3000);
+  },
+  unmounted() {
+    clearInterval(this.timer);
   },
 
   methods: {
