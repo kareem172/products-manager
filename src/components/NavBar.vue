@@ -22,8 +22,6 @@
           <Moon v-if="!isDarkMode" size="28" />
           <Sun v-if="isDarkMode" size="28" />
         </button>
-        <button class="outlined">Login</button>
-        <button>Sign Up</button>
       </div>
     </div>
   </nav>
