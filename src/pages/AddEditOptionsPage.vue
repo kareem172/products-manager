@@ -73,4 +73,8 @@ h1 {
     font-size: 0.75rem;
   }
 }
+main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 </style>
