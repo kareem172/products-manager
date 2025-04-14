@@ -6,7 +6,7 @@
         <h3>Explore owr top products</h3>
         <p>This is the home for every thing you wish for.</p>
         <div>
-          <router-link class="btn" to="/products">See all products</router-link>
+          <router-link class="btn" to="/options">See all products</router-link>
         </div>
       </aside>
       <div class="top-products">
@@ -128,7 +128,6 @@ aside h1 {
   display: flex;
   flex-wrap: nowrap;
   text-align: center;
-  gap: 1rem;
 }
 .product img {
   width: 60%;
