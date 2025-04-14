@@ -30,6 +30,8 @@ export default {
   --foreground-color: #030303;
   --white-color: #fff;
   --black-color: #000;
+  --secondary-background-color: #ccc;
+  --gray-color: #333;
   --font-size: 16px;
   --font-family: sans-serif;
   --border-radius: 0.25rem;
@@ -44,12 +46,14 @@ export default {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .dark {
-  --secondary-color: hsl(211, 66%, 21%);
-  --secondary-color-pressed: hsl(211, 66%, 18%);
+  --secondary-color: hsl(211, 66%, 16%);
+  --secondary-color-pressed: hsl(211, 66%, 14%);
   --primary-color-pressed: hsl(30, 20%, 79%);
   --primary-color: hsl(30, 20%, 60%);
   --background-color: hsl(211, 66%, 8%);
   --foreground-color: #f1efec;
+  --secondary-background-color: hsl(211, 66%, 11%);
+  --gray-color: #e7e7e7;
 }
 body {
   min-height: 100dvh;
@@ -67,6 +71,7 @@ body {
 
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0.75rem 2rem;
   @media (max-width: 600px) {
@@ -75,6 +80,10 @@ body {
 }
 button,
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background-color: var(--primary-color);
   color: var(--white-color);
   padding: 0.7rem 1.2rem;
