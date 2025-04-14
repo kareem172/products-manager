@@ -12,7 +12,17 @@ const routes = [
   {
     path: "/options",
     name: "OptionsApi",
-    component: () => import("@/pages/Options.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("@/pages/Options.vue"),
+      },
+      {
+        path: "add-edit-product/:id?",
+        name: "AddEditProduct",
+        component: () => import("@/pages/AddEditOptionsPage.vue"),
+      },
+    ],
   },
 ];
 
