@@ -118,20 +118,26 @@ button,
     &:hover {
       color: var(--primary-color-pressed);
     }
-
-    .secondary {
-      background-color: var(--secondary-color);
-      color: var(--foreground-color);
-      &:hover {
-        background-color: var(--secondary-color-pressed);
-      }
+  }
+  &.secondary {
+    background-color: var(--secondary-color);
+    color: var(--foreground-color);
+    &:hover {
+      background-color: var(--secondary-color-pressed);
     }
-    .small {
-      padding: 0.25rem;
-      font-size: 1rem;
-      & * {
-        stroke-width: 0.1rem;
-      }
+  }
+  &.small {
+    padding: 0.25rem;
+    font-size: 1rem;
+    & * {
+      stroke-width: 0.1rem;
+    }
+  }
+  &.danger {
+    background-color: hsl(10, 100%, 40%);
+    color: var(--white-color);
+    &:hover {
+      background-color: hsl(10, 100%, 30%);
     }
   }
 }
