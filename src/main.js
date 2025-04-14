@@ -18,9 +18,20 @@ const routes = [
         component: () => import("@/pages/Options.vue"),
       },
       {
-        path: "add-edit-product/:id?",
+        path: "add-edit-product",
         name: "AddEditProduct",
-        component: () => import("@/pages/AddEditOptionsPage.vue"),
+        children: [
+          {
+            path: "",
+            name: "AddProduct",
+            component: () => import("@/pages/AddEditOptionsPage.vue"),
+          },
+          {
+            path: ":id",
+            name: "EditProduct",
+            component: () => import("@/pages/AddEditOptionsPage.vue"),
+          },
+        ],
       },
     ],
   },
