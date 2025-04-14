@@ -61,6 +61,8 @@ body {
 }
 #app,
 #app > div {
+  position: relative;
+  overflow-x: hidden;
   min-height: 100dvh;
   max-width: 100dvw;
   display: flex;

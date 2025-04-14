@@ -4,32 +4,54 @@
       <div>
         <router-link to="/" class="logo">Logo</router-link>
       </div>
-      <ul class="nav-links">
-        <li><router-link to="/" active-class="active">Home</router-link></li>
-        <li>
-          <router-link active-class="active" to="/options"
-            >options API</router-link
-          >
-        </li>
-        <li>
-          <router-link active-class="active" to="/composition"
-            >composition api</router-link
-          >
-        </li>
-      </ul>
-      <div class="buttons">
-        <button class="icon" @click="toggleMood()">
-          <Moon v-if="!isDarkMode" size="28" />
-          <Sun v-if="isDarkMode" size="28" />
+      <div :data-open="isNavOpen" class="small-nav">
+        <button
+          :disabled="!isNavOpen"
+          @click="toggleNavbar"
+          class="icon exit-menu"
+        >
+          <X size="28" />
         </button>
+        <ul class="nav-links">
+          <li>
+            <router-link @click="closeNav" to="/" active-class="active"
+              >Home</router-link
+            >
+          </li>
+          <li>
+            <router-link @click="closeNav" active-class="active" to="/options"
+              >options API</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              @click="closeNav"
+              active-class="active"
+              to="/composition"
+              >composition api</router-link
+            >
+          </li>
+        </ul>
+        <div class="buttons">
+          <button class="icon" @click="toggleMood()">
+            <Moon v-if="!isDarkMode" size="28" />
+            <Sun v-if="isDarkMode" size="28" />
+          </button>
+        </div>
       </div>
+      <button
+        :disabled="isNavOpen"
+        @click="toggleNavbar"
+        class="icon burger-menu"
+      >
+        <Menu size="28" />
+      </button>
     </div>
   </nav>
 </template>
 
 <script>
-import { Sun } from "lucide-vue-next";
-import { Moon } from "lucide-vue-next";
+import { Sun, Moon, Menu, X } from "lucide-vue-next";
 import { mapState } from "vuex";
 
 export default {
@@ -37,6 +59,13 @@ export default {
   components: {
     Moon,
     Sun,
+    Menu,
+    X,
+  },
+  data() {
+    return {
+      isNavOpen: false,
+    };
   },
   computed: {
     ...mapState(["isDarkMode"]),
@@ -44,6 +73,12 @@ export default {
   methods: {
     toggleMood() {
       this.$store.dispatch("TOGGLE_DARK_MOOD");
+    },
+    toggleNavbar() {
+      this.isNavOpen = !this.isNavOpen;
+    },
+    closeNav() {
+      this.isNavOpen = false;
     },
   },
 };
@@ -57,7 +92,7 @@ nav {
 nav > div {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .logo {
@@ -95,5 +130,55 @@ nav > div {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.small-nav {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.burger-menu {
+  display: none;
+}
+.exit-menu {
+  display: none;
+}
+
+@media (max-width: 650px) {
+  .burger-menu {
+    display: inline-flex;
+  }
+  .exit-menu {
+    display: inline-flex;
+    align-self: start;
+  }
+
+  .small-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: var(--secondary-color);
+    width: 90%;
+    min-width: 18rem;
+    max-width: 22rem;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    color: var(--foreground-color);
+    box-shadow: 0 0 1rem var(--foreground-color);
+    border-radius: 1rem 0 0 1rem;
+    transition: all 0.5s ease-in-out;
+    ul {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &[data-open="false"] {
+      right: -100%;
+    }
+  }
 }
 </style>
