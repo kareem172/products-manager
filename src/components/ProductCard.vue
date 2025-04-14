@@ -10,7 +10,7 @@
         <span class="stock"> {{ product.stock }} left</span>
       </div>
       <div class="product-details">
-        <span class="price">{{ product.price }}$</span>
+        <span class="price">{{ formatCurrency(product.price) }}</span>
         <span>
           <Star fill="#FF9529" stroke="#FF9529" size="16" />
           <span>{{ product.rating }}</span>
@@ -22,7 +22,7 @@
         >See more</router-link
       >
       <router-link
-        :to="$route.path + `/add-edit-product`"
+        :to="$route.path + `/add-edit-product/${product.id}`"
         class="btn outlined"
         append
         >Edit
@@ -33,13 +33,16 @@
 
 <script>
 import { Star } from "lucide-vue-next";
+import { formatCurrency } from "@/utils/formatters.js";
 export default {
   name: "ProductCard",
   props: ["product"],
   components: {
     Star,
   },
-  setup() {},
+  setup() {
+    return { formatCurrency };
+  },
 };
 </script>
 <style scoped>
