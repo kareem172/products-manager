@@ -9,6 +9,11 @@ const routes = [
     name: "Home",
     component: () => import("@/pages/Home.vue"),
   },
+  {
+    path: "/options",
+    name: "OptionsApi",
+    component: () => import("@/pages/Options.vue"),
+  },
 ];
 
 const router = createRouter({
