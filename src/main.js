@@ -10,6 +10,11 @@ const routes = [
     component: () => import("@/pages/Home.vue"),
   },
   {
+    path: "/product/:productId",
+    name: "Product",
+    component: () => import("@/pages/ProductPage.vue"),
+  },
+  {
     path: "/options",
     name: "OptionsApi",
     children: [
