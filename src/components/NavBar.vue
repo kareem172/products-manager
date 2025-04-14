@@ -1,11 +1,21 @@
 <template>
   <nav>
     <div class="container">
-      <div class="logo">Logo</div>
+      <div>
+        <router-link to="/" class="logo">Logo</router-link>
+      </div>
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/options">options API</a></li>
-        <li><a href="/composition">composition api</a></li>
+        <li><router-link to="/" active-class="active">Home</router-link></li>
+        <li>
+          <router-link active-class="active" to="/options"
+            >options API</router-link
+          >
+        </li>
+        <li>
+          <router-link active-class="active" to="/composition"
+            >composition api</router-link
+          >
+        </li>
       </ul>
       <div class="buttons">
         <button class="icon" @click="toggleMood()">
@@ -75,6 +85,10 @@ nav > div {
     transition: color 0.2s ease-in-out;
     &:hover {
       color: var(--primary-color);
+    }
+    &.active {
+      color: var(--primary-color);
+      font-weight: bold;
     }
   }
 }
