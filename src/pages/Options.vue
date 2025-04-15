@@ -46,6 +46,11 @@ main {
 header {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  a {
+    margin-left: auto;
+  }
 }
 h1 {
   font-size: 2rem;
