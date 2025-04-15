@@ -13,12 +13,12 @@ export default {
         {
           path: "",
           name: "AddCompositionProduct",
-          component: () => import("@/pages/AddEditOptionsPage.vue"),
+          component: () => import("@/pages/AddEditCompositionPage.vue"),
         },
         {
           path: ":id",
           name: "EditCompositionProduct",
-          component: () => import("@/pages/AddEditOptionsPage.vue"),
+          component: () => import("@/pages/AddEditCompositionPage.vue"),
         },
       ],
     },

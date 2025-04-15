@@ -90,12 +90,11 @@
 </template>
 
 <script>
-import ProductMixin from "@/mixins/productsMixin.js";
 import { Trash } from "lucide-vue-next";
 export default {
   name: "ProductForm",
-  emits: ["submit"],
-  mixins: [ProductMixin],
+  emits: ["submit", "delete"],
+  props: ["product"],
   components: {
     Trash,
   },
@@ -118,23 +117,33 @@ export default {
       },
     };
   },
-
-  mounted() {
-    this.productId = this.getId();
-    console.log("Product ID:", this.productId);
-    if (this.productId) {
-      this.getProductById(this.productId).then((product) => {
-        console.log("Product Form:", product);
-        this.formdata = { ...product };
-      });
-    }
+  watch: {
+    product: {
+      handler(newVal) {
+        if (newVal) {
+          this.formdata = {
+            ...newVal,
+            tags: newVal.tags.join(","),
+          };
+          this.productId = newVal.id;
+        }
+      },
+      immediate: true,
+    },
   },
-
+  mounted() {
+    if (this.product)
+      this.formdata = {
+        ...this.product,
+        tags: this.product.tags.join(","),
+      };
+  },
   methods: {
     cancel() {
       this.$router.back();
     },
     submit() {
+      console.log("Form : ", this.formdata);
       this.$emit("submit", this.formdata);
       this.formdata = {
         title: "",
@@ -149,9 +158,6 @@ export default {
         warrantyInformation: "",
         availabilityStatus: "",
       };
-    },
-    getId() {
-      return this.$route.params?.id;
     },
     handleDelete(productId) {
       this.$emit("delete", productId);
