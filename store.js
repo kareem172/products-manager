@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { createStore } from "vuex";
 
@@ -13,7 +14,6 @@ const store = createStore({
       state.isDarkMode = !state.isDarkMode;
     },
     setAllProducts(state, payload) {
-      console.log("🚀 ~ setAllProducts ~ payload:", payload)
       state.products = payload;
     },
     setProduct(state, payload) {
@@ -40,24 +40,16 @@ const store = createStore({
         rating: 4.5,
         reviews: [],
       });
-      const res = await axios.get("http://localhost:3001/products");
-      commit("setAllProducts", res.data);
     },
-    async UPDATE_PRODUCT({ commit }, id, updatedProduct) {
-      await axios.patch(`http://localhost:3001/products/${id}`, {
-        ...updatedProduct,
-      });
-      const res = await axios.get("http://localhost:3001/products");
-      commit("setAllProducts", res.data);
+    async UPDATE_PRODUCT({ commit }, { id, updatedProduct }) {
+      await axios.patch(`http://localhost:3001/products/${id}`, updatedProduct);
     },
     async DELETE_PRODUCT({ commit }, id) {
       await axios
         .delete(`http://localhost:3001/products/${id}`)
         .catch((err) => {
-          console.err(err);
+          console.error(err);
         });
-      const res = await axios.get("http://localhost:3001/products");
-      commit("setAllProducts", res.data);
     },
   },
 });
