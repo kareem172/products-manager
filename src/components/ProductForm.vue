@@ -123,7 +123,7 @@ export default {
         if (newVal) {
           this.formdata = {
             ...newVal,
-            tags: newVal.tags.join(","),
+            tags: newVal?.tags?.join(","),
           };
           this.productId = newVal.id;
         }
@@ -135,7 +135,7 @@ export default {
     if (this.product)
       this.formdata = {
         ...this.product,
-        tags: this.product.tags.join(","),
+        tags: this.product?.tags?.join(","),
       };
   },
   methods: {
@@ -143,7 +143,6 @@ export default {
       this.$router.back();
     },
     submit() {
-      console.log("Form : ", this.formdata);
       this.$emit("submit", this.formdata);
       this.formdata = {
         title: "",

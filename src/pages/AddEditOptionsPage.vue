@@ -1,7 +1,11 @@
 <template>
   <main class="container">
     <h1>{{ productId ? "Edit" : "Add" }} Product <span>Options</span></h1>
-    <ProductForm @submit="handleSubmit" @delete="handleDelete" />
+    <ProductForm
+      :product="productId ? product : undefined"
+      @submit="handleSubmit"
+      @delete="handleDelete"
+    />
   </main>
 </template>
 
@@ -17,12 +21,17 @@ export default {
   data() {
     return {
       productId: "",
+      product: null,
     };
   },
 
-  mounted() {
+  async mounted() {
     this.productId = this.getId();
     console.log("Product ID main:", this.productId);
+    if (this.productId) {
+      this.product = await this.getProductById(this.productId);
+      console.log("Product:", this.product);
+    }
   },
 
   methods: {
