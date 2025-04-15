@@ -38,7 +38,7 @@ export default {
     handleSubmit(formData) {
       console.log("Form submitted!");
       if (this.productId) {
-        this.updateProducts(this.productId, formData)
+        this.updateProduct(this.productId, formData)
           .then((res) => {
             console.log(res);
           })
@@ -55,6 +55,7 @@ export default {
             console.error("Error adding product:", error);
           });
       }
+      this.$router.back();
     },
     handleDelete(productId) {
       console.log("Delete product with ID:", productId);
@@ -66,6 +67,7 @@ export default {
         .catch((error) => {
           console.error("Error deleting product:", error);
         });
+      this.$router.back();
     },
     getId() {
       return this.$route.params?.id;

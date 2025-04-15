@@ -123,7 +123,7 @@ export default {
         if (newVal) {
           this.formdata = {
             ...newVal,
-            tags: newVal?.tags?.join(","),
+            tags: newVal?.tags ?? newVal?.tags?.join(","),
           };
           this.productId = newVal.id;
         }
@@ -135,7 +135,7 @@ export default {
     if (this.product)
       this.formdata = {
         ...this.product,
-        tags: this.product?.tags?.join(","),
+        tags: this.product?.tags ?? this.product?.tags?.join(","),
       };
   },
   methods: {
@@ -144,19 +144,6 @@ export default {
     },
     submit() {
       this.$emit("submit", this.formdata);
-      this.formdata = {
-        title: "",
-        price: "",
-        thumbnail: "",
-        description: "",
-        category: "",
-        stock: "",
-        brand: "",
-        tags: [],
-        shippingInformation: "",
-        warrantyInformation: "",
-        availabilityStatus: "",
-      };
     },
     handleDelete(productId) {
       this.$emit("delete", productId);
